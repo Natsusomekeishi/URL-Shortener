@@ -1,7 +1,7 @@
 # url_shortener
 
-This is a test case for fun.
+这是一个短链接服务~
 
-Of course you can new an issues to [this repo](https://github.com/baddate/url_shortener_db/issues/) for shortening your urls like [this](https://github.com/baddate/url_shortener_db/issues/1).
+学习自 [https://github.com/baddate/url_shortener](https://github.com/baddate/url_shortener).
 
-For more details, you can refer to [https://github.com/nelsontky/gh-pages-url-shortener](https://github.com/nelsontky/gh-pages-url-shortener).
+更多详细 [https://github.com/nelsontky/gh-pages-url-shortener](https://github.com/nelsontky/gh-pages-url-shortener).
