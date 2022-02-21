@@ -1,8 +1,244 @@
-<!DOCTYPE html>
-<html>
-    
+<!doctype html>
+<html lang="en">
 <head>
-  <meta http-equiv="Refresh" content="0; URL=https://github.com/Natsusomekeishi/url_shortener/issues">
-</head>
+	<meta charset="UTF-8">
+	<title>短链接生成器</title>
 
+	<style>
+		body {
+			color: #1A1A1A;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 20px;
+			background-color: #FF6666;
+			overflow-y: scroll;
+		}
+
+		#container {
+			left: auto;
+			width: 35em;
+			margin: 5em auto;
+			background-color: white;
+			padding: 1em 2em 2em 2em;
+			border-radius: 30px;
+		}
+
+		a {
+			color: #FD366D;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		address {
+			text-align: right;
+			font-size: 0.75em;
+		}
+
+		section {
+			display: none;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #ddd;
+			overflow: auto;
+			padding: 6px 10px;
+			border-radius: 3px;
+		}
+
+		body.unk section.unk,
+		body.explain section.explain,
+		body.redirect section.redirect,
+		body.error section.error
+		{
+			display: block;
+		}
+
+		ol {
+			list-style-type: none;
+			list-style-type: decimal !ie; /*IE 7- hack*/
+
+			margin: 0;
+			margin-left: 3em;
+			padding: 0;
+
+			counter-reset: li-counter;
+		}
+		ol > li{
+			position: relative;
+			margin-bottom: 20px;
+			padding-left: 0.5em;
+			min-height: 3em;
+			border-left: 2px solid #CCCCCC;
+		}
+		ol > li:before {
+			position: absolute;
+			top: 0;
+			left: -1em;
+			width: 0.8em;
+
+			font-size: 3em;
+			line-height: 1;
+			font-weight: bold;
+			text-align: right;
+			color: #464646;
+
+			content: counter(li-counter);
+			counter-increment: li-counter;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			border: none;
+			border-bottom: solid 2px #c9c9c9;
+			transition: border 0.3s;
+			outline: none;
+			background-color: #eee;
+			font-size: 1em;
+			width: 80%;
+			border-radius: 20px;
+		}
+		input[type="text"]:focus {
+			border-bottom: solid 2px #969696;
+		}
+
+		button {
+			padding: 10px;
+			border: none;
+			border-bottom: solid 2px #c9c9c9;
+			outline: none;
+			background-color: #eee;
+			font-size: 1em;
+			cursor: pointer;
+			width: 10%;
+			border-radius: 20px;
+		}
+		button:hover {
+			background-color: #ddd;
+		}
+		button:active {
+			border-bottom-color: #969696;
+		}
+
+	</style>
+
+</head>
+<body class="unk">
+
+	<script>
+		var issuesUrl = "https://api.github.com/repos/natsusomekeishi/url_shortener/issues";
+
+		var getJson = function(url, cb) {
+			var r = new XMLHttpRequest();
+			r.open("GET", url, true);
+			r.onreadystatechange = function () {
+				if(r.readyState !== 4) return;
+				var json = JSON.parse(r.responseText);
+				cb(r.status, json);
+			};
+			r.send();
+		};
+
+		var getN = function() {
+			return parseInt(window.location.search.substring(1), 10);
+		};
+
+		var fixUrl = function(url) {
+			if(!/^https?:\/\//.test(url)) {
+				return 'http://' + url;
+			}
+			return url;
+		};
+
+		var handleSubmit = function(e) {
+			if (e && e.preventDefault) e.preventDefault();
+			var title = encodeURIComponent(document.getElementById('ipt').value);
+			var body = encodeURIComponent("请在标题出填写需要缩短的链接网址~");
+			if (nextN) {
+				body += encodeURIComponent("\n\n也许你的短链接网址为:  keishi.cc/" + nextN);
+			}
+			var url = 'https://github.com/natsusomekeishi/url_shortener/issues/new?title=' + title + '&body=' + body;
+			window.open(url, '_blank');
+			return false;
+		};
+
+		var nextN = null;
+
+		var explain = function() {
+			document.body.className = "explain";
+			getJson(issuesUrl, function(status, json) {
+				nextN = json[0].number + 1;
+				var ul = document.getElementById('existing');
+				var i;
+				for(i = 0; i < json.length; i++) {
+					var number = json[i].number;
+					var url = fixUrl(json[i].title);
+					var short = 'ghurl.github.io/?' + number;
+					var li = document.createElement('li');
+					var a = document.createElement('a');
+					a.href = 'https://' + short;
+					a.textContent = short + ' → ' + url;
+					li.appendChild(a);
+					ul.appendChild(li);
+				}
+			})
+		};
+
+		var main = function() {
+			var n = getN();
+			if (n) {
+				redirect(n);
+			} else {
+				explain();
+			}
+		};
+
+		setTimeout(main, 1);
+	</script>
+
+	<div id="container">
+		<h1><a href="/">短链接生成器</a></h1>
+
+		<section class="explain">
+			<p>
+				阁下可以通过该页面构建一个短链接~
+			</p>
+			<ol>
+				<li>
+					填写你想缩短的链接，它将成为 <a href="https://github.com/natsusomekeishi/url_shortener/issues">keishi.cc</a> 中 <strong>issue</strong> 的标题。
+					<p>
+						<form onSubmit="return handleSubmit();">
+							<input id="ipt" type="text" placeholder="请填写包含 https:// 的链接">
+							<button type="submit">完成</button>
+						</form>
+					</p>
+				</li>
+				<li>点击 <strong>Submit new issues</strong> 提交你所填写的原链接。</li>
+				<li>
+					你所使用的issues楼层号即所缩短的短链接，例如：
+					<code>https://keishi.cc/楼层号</code>
+				</li>
+			</ol>
+
+		</section>
+
+		<address>
+			<div class="author">
+				主页原作者 <a href="https://github.com/gberger">gberger</a>
+			</div>
+			<div class="author">
+				方案原作者 <a href="https://github.com/baddate">baddate</a>
+			</div>
+			<div class="author">
+				魔改作者 <a href="https://github.com/natsusomekeishi">Keishi</a>
+			</div>
+			<div class="source">
+				制作于 <a href="https://github.com/ghurl/ghurl.github.io">GitHub</a>
+			</div>
+		</address>
+	</div>
+
+</body>
 </html>
