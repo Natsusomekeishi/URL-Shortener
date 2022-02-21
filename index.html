@@ -155,9 +155,9 @@
 		var handleSubmit = function(e) {
 			if (e && e.preventDefault) e.preventDefault();
 			var title = encodeURIComponent(document.getElementById('ipt').value);
-			var body = encodeURIComponent("请在标题出填写需要缩短的链接网址~");
+			var body = encodeURIComponent("点击右下角 Submit new issues 即可~");
 			if (nextN) {
-				body += encodeURIComponent("\n\n也许你的短链接网址为:  keishi.cc/" + nextN);
+				body += encodeURIComponent("\n\n也许你的短链接网址将为:  keishi.cc/" + nextN);
 			}
 			var url = 'https://github.com/natsusomekeishi/url_shortener/issues/new?title=' + title + '&body=' + body;
 			window.open(url, '_blank');
