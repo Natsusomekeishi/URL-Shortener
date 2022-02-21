@@ -3,8 +3,9 @@
 <head>
 
 	<meta charset="UTF-8">
-	<title>短链接生成器</title>
+	<title>短链接生成器&#129505;</title>
 	<link rel="shortcut icon" href="https://img.keishi.cc/img/url_shortener_logo.png">
+
 
 
 	<style>
@@ -16,7 +17,10 @@
 			background-color: white;
 			padding: 1em 2em 2em 2em;
 			border-radius: 30px;
+			filter: drop-shadow(0 0 10px white);
 		}
+
+		footer {filter: drop-shadow(0 0 10px white);}
 
 		a {
 			color: #FD366D;
@@ -140,8 +144,8 @@
   height: 100vh;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
-  filter: drop-shadow(0 0 10px white);
 }
+
 
 .snow {
   position: absolute;
@@ -149,7 +153,12 @@
   height: 10px;
   background: white;
   border-radius: 50%;
+  filter: drop-shadow(0 0 10px white);
 }
+
+
+
+
 .snow:nth-child(1) {
   opacity: 0.1687;
   transform: translate(92.3471vw, -10px) scale(0.0179);
@@ -2762,6 +2771,7 @@
 
 
 
+
 	</style>
 
 	<div class="snow"></div>
@@ -2965,7 +2975,12 @@
 <div class="snow"></div>
 <div class="snow"></div>
 
+
+
 </head>
+
+
+
 <body class="unk">
 
 	<script>
@@ -3040,11 +3055,11 @@
 	</script>
 
 	<div id="container">
-		<h1><a href="/">短链接生成器</a></h1>
+		<h1><a href="/">&#128273夏染の短链接</a></h1>
 
 		<section class="explain">
 			<p>
-				阁下可以通过该页面构建一个短链接~
+				阁下,可以通过以下步骤快速建立一个短链接~ &#129505;
 			</p>
 			<ol>
 				<li>
@@ -3068,27 +3083,49 @@
 		
 
 		<address>
+
 			<div class="author">
-				主页原作者 <a href="https://github.com/gberger"><strong>gberger</strong></a>
-			</div>
-			<div class="author">
-				方案原作者 <a href="https://github.com/baddate"><strong>baddate</strong></a>
-			</div>
-			<div class="author">
-				魔改作者 <a href="https://github.com/natsusomekeishi"><strong>Keishi</strong></a>
+				By <a href="https://github.com/natsusomekeishi"><strong>Keishi</strong></a>
 			</div>
 			<div class="source">
-				制作于 <a href="https://github.com"><strong>GitHub</strong></a>
+				Support <a href="https://github.com"><strong>GitHub</strong></a>
 			</div>
+			<div class="author">
+				Refer <a href="https://github.com/gberger"><strong>Gberger</strong></a> & <a href="https://github.com/baddate"><strong>Baddate</strong></a>
+			</div>
+
+
 		</address>
 	</div>
 
-	
+	<footer>
+		<center>
+			<p style="color:#FFFFFF;"><script type="text/javascript" src="https://api.vvhan.com/api/love?type=js">
+</script><script>ishan()</script></p>
+		</center>
+    </footer>
+
+
 
 	
 
 </body>
 
+<canvas class="fireworks"
+    style="position: fixed; left: 0px; top: 0px; z-index: 1; pointer-events: none; width: 1440px; height: 451px;"
+    width="2880" height="902"></canvas>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/UniqueYou/myjs@main/anime.min.js"></script>
+<script type="text/javascript">
+    "use strict"; function updateCoords(e) { pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top } function setParticuleDirection(e) { var t = anime.random(0, 360) * Math.PI / 180, a = anime.random(50, 180), n = [-1, 1][anime.random(0, 1)] * a; return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) } } function createParticule(e, t) { var a = {}; return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function () { ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill() }, a } function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function () { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a } function renderParticule(e) { for (var t = 0; t < e.animatables.length; t++) { e.animatables[t].target.draw() } } function animateParticules(e, t) { for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) { n.push(createParticule(e, t)) } anime.timeline().add({ targets: n, x: function (e) { return e.endPos.x }, y: function (e) { return e.endPos.y }, radius: 0.1, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule }).add({ targets: a, radius: anime.random(80, 160), lineWidth: 0, alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) }, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule, offset: 0 }) } function debounce(e, t) { var a; return function () { var n = this, i = arguments; clearTimeout(a), a = setTimeout(function () { e.apply(n, i) }, t) } } var canvasEl = document.querySelector(".fireworks"); if (canvasEl) { var ctx = canvasEl.getContext("2d"), numberOfParticules = 30, pointerX = 0, pointerY = 0, tap = "mousedown", colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"], setCanvasSize = debounce(function () { canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2) }, 500), render = anime({ duration: 1 / 0, update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) } }); document.addEventListener(tap, function (e) { "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY)) }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1) } "use strict"; function updateCoords(e) { pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top } function setParticuleDirection(e) { var t = anime.random(0, 360) * Math.PI / 180, a = anime.random(50, 180), n = [-1, 1][anime.random(0, 1)] * a; return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) } } function createParticule(e, t) { var a = {}; return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function () { ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill() }, a } function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function () { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a } function renderParticule(e) { for (var t = 0; t < e.animatables.length; t++) { e.animatables[t].target.draw() } } function animateParticules(e, t) { for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) { n.push(createParticule(e, t)) } anime.timeline().add({ targets: n, x: function (e) { return e.endPos.x }, y: function (e) { return e.endPos.y }, radius: 0.1, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule }).add({ targets: a, radius: anime.random(80, 160), lineWidth: 0, alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) }, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule, offset: 0 }) } function debounce(e, t) { var a; return function () { var n = this, i = arguments; clearTimeout(a), a = setTimeout(function () { e.apply(n, i) }, t) } } var canvasEl = document.querySelector(".fireworks"); if (canvasEl) { var ctx = canvasEl.getContext("2d"), numberOfParticules = 30, pointerX = 0, pointerY = 0, tap = "mousedown", colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"], setCanvasSize = debounce(function () { canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2) }, 500), render = anime({ duration: 1 / 0, update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) } }); document.addEventListener(tap, function (e) { "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY)) }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1) };
+</script>
+
+<script type="text/javascript" src="http://cdn.repository.webfont.com/wwwroot/js/wf/youziku.api.min.js"></script>
+<script type="text/javascript">
+   $webfont.load("body", "f8fdee3b156a41a3b56035deb27c194b", "jdzhonyuanjian");
+   /*$webfont.load("#id1,.class1,h1", "f8fdee3b156a41a3b56035deb27c194b", "jdzhonyuanjian");*/
+   /*．．．*/
+   $webfont.draw();
+</script>
 
 
 </html>
